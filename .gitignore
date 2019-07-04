@@ -1,0 +1,11 @@
+# ignore all files/directories with which match these
+**/.DS_Store
+**.log
+**/.sass-cache
+**/node_modules
+**/.Rhistory
+
+**/.env
+**/.pgpass
+**/config.json
+**/testScripts
