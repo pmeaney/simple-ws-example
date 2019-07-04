@@ -7,7 +7,6 @@ const EventEmitter = require('events')
 class InitializedEventEmitterClass extends EventEmitter { }
 const emitter = new InitializedEventEmitterClass()
 
-
 router.get('/', function(req, res, next) {
   res.render('pages/ws')
 })

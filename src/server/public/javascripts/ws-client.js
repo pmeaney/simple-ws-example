@@ -1,48 +1,69 @@
 
 
-// Attempt 3 ----------
-(function () { /* code here */
+// Attempt 4 ----------
+// (function () { /* code here */
 
-  var ws = new WebSocket('wss://localhost:40510/')
-
-  // ws.on('open', function open() {
-  ws.onopen = () => {
-
+/* Previously was having a problem w/ establishing connection.
+This code seems to work. */
+// Source: https://hackernoon.com/nodejs-web-socket-example-tutorial-send-message-connect-express-set-up-easy-step-30347a2c5535
+var ws = new WebSocket('ws://localhost:40510');
+  // event emmited when connected
+    ws.onopen = function () {
     console.log('websocket is connected ...')
-    // sending a send event to websocket server
-    ws.send('connected')
-
-    function processForm(e) {
-      if (e.preventDefault) e.preventDefault()
-
-      var formInput = document.getElementsByName("formInput")
-      console.log('formInput', formInput)
-      /* do what you want with the form */
-      ws.send('message', formInput)
-
-
-      // You must return false to prevent the default form behavior
-      return false
-    }
-
-    var form = document.getElementById('my-form')
-    if (form.attachEvent) {
-      form.attachEvent("submit", processForm)
-    } else {
-      form.addEventListener("submit", processForm)
-    }
-
-    ws.onmessage(function (event) {
-      console.log('msg received at client from server-- ', event)
-    })
-
+        // sending a send event to websocket server
+        ws.send('connected')
+}
+// event emmited when receiving message
+    ws.onmessage = function (ev) {
+    console.log(ev);
   }
 
-  // ws.on('message', function incoming(data) {
-  //   console.log('msg received at client from server-- ', data)
-  // })
+// })
 
-})
+
+// Attempt 3 ----------
+// (function () { /* code here */
+
+//   var ws = new WebSocket('wss://localhost:40510/')
+
+//   // ws.on('open', function open() {
+//   ws.onopen = () => {
+
+//     console.log('websocket is connected ...')
+//     // sending a send event to websocket server
+//     ws.send('connected')
+
+//     function processForm(e) {
+//       if (e.preventDefault) e.preventDefault()
+
+//       var formInput = document.getElementsByName("formInput")
+//       console.log('formInput', formInput)
+//       /* do what you want with the form */
+//       ws.send('message', formInput)
+
+
+//       // You must return false to prevent the default form behavior
+//       return false
+//     }
+
+//     var form = document.getElementById('my-form')
+//     if (form.attachEvent) {
+//       form.attachEvent("submit", processForm)
+//     } else {
+//       form.addEventListener("submit", processForm)
+//     }
+
+//     ws.onmessage(function (event) {
+//       console.log('msg received at client from server-- ', event)
+//     })
+
+//   }
+
+//   // ws.on('message', function incoming(data) {
+//   //   console.log('msg received at client from server-- ', data)
+//   // })
+
+// })
 
 // // Attempt 2 ----------
 
