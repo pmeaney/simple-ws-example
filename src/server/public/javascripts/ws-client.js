@@ -1,11 +1,17 @@
-// Attempt 2 ----------
 
-(function () { /* code here */ 
 
-  var ws = new WebSocket('ws://localhost:40510/')
+// Attempt 3 ----------
+(function () { /* code here */
 
-  ws.on('open', function open() {
-    
+  var ws = new WebSocket('wss://localhost:40510/')
+
+  // ws.on('open', function open() {
+  ws.onopen = () => {
+
+    console.log('websocket is connected ...')
+    // sending a send event to websocket server
+    ws.send('connected')
+
     function processForm(e) {
       if (e.preventDefault) e.preventDefault()
 
@@ -13,7 +19,7 @@
       console.log('formInput', formInput)
       /* do what you want with the form */
       ws.send('message', formInput)
-    
+
 
       // You must return false to prevent the default form behavior
       return false
@@ -30,13 +36,53 @@
       console.log('msg received at client from server-- ', event)
     })
 
-  })
+  }
 
   // ws.on('message', function incoming(data) {
   //   console.log('msg received at client from server-- ', data)
   // })
 
 })
+
+// // Attempt 2 ----------
+
+// (function () { /* code here */ 
+
+//   var ws = new WebSocket('ws://localhost:40510/')
+
+//   ws.on('open', function open() {
+    
+//     function processForm(e) {
+//       if (e.preventDefault) e.preventDefault()
+
+//       var formInput = document.getElementsByName("formInput")
+//       console.log('formInput', formInput)
+//       /* do what you want with the form */
+//       ws.send('message', formInput)
+    
+
+//       // You must return false to prevent the default form behavior
+//       return false
+//     }
+
+//     var form = document.getElementById('my-form')
+//     if (form.attachEvent) {
+//       form.attachEvent("submit", processForm)
+//     } else {
+//       form.addEventListener("submit", processForm)
+//     }
+
+//     ws.onmessage(function (event) {
+//       console.log('msg received at client from server-- ', event)
+//     })
+
+//   })
+
+//   // ws.on('message', function incoming(data) {
+//   //   console.log('msg received at client from server-- ', data)
+//   // })
+
+// })
 
 
   // const thread = document.getElementById('chat-thread-1')

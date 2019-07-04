@@ -3,9 +3,6 @@
 **.log
 **/.sass-cache
 **/node_modules
-**/.Rhistory
 
 **/.env
-**/.pgpass
 **/config.json
-**/testScripts
